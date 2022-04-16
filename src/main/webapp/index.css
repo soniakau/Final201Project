@@ -1,0 +1,89 @@
+.container {
+    padding-top: 50px;
+}
+
+#game-board {
+  display: grid;
+  grid-template-columns: 150px 150px 150px;
+  grid-gap: 8px;
+  background-color: #269455;
+  width: fit-content;
+  padding: 8px;
+  border-radius: 10px;
+  margin: auto
+}
+
+#game-board > button:hover {
+  background-color: #27ae60;
+}
+
+#game-board > button:active {
+  background-color: #269455;
+}
+
+#game-board > button {
+  border-width: 0px;
+  height: 150px;
+  border-radius: 2px;
+  font-size: 75px;
+  background-color: #2ecc71;
+}
+
+#markers {
+  width: fit-content;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 10px;
+}
+
+.centered {
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+#chatbox {
+  border-width: 0px;
+  background-color: white;
+  height: 200px;
+  margin-bottom: 5px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+#status-container {
+  background-color: white;
+  width: 300px;
+  padding: 10px;
+  margin: auto;
+  font-weight: bold;
+}
+
+#reset {
+  position: absolute; 
+  right: 2px; 
+  top: 7px;
+  border-width: 0px;
+  font-size: 30px;
+  background-color: transparent;
+}
+
+.scroller::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+.scroller::-webkit-scrollbar-track {
+  background: white;
+}
+.scroller::-webkit-scrollbar-thumb {
+  background: #ddd;
+  visibility:hidden;
+}
+.scroller:hover::-webkit-scrollbar-thumb {
+  visibility:visible;
+}

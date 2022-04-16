@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <title>Tic Tac Toe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="index.css"/>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+  </head>
+
+  <body>
+    <!-- Container -->
+    <div class="container">
+      
+      <!-- Buttons -->
+      <div class="row">
+
+        <div class="col-6">
+          <div id="game-board" class="shadow-lg mb-5 bg-body rounded">
+            <button id="00"></button>
+            <button id="01"></button>
+            <button id="02"></button>
+    
+            <button id="10"></button>
+            <button id="11"></button>
+            <button id="12"></button>
+    
+            <button id="20"></button>
+            <button id="21"></button>
+            <button id="22"></button>
+          </div>
+
+          <div style="width: 100%; text-align: center;">
+            <div id="status-container" class="shadow-lg mb-5 bg-body" style="position: relative">
+              <div id="statusbox">...</div>
+              <button id="reset" class="hidden"><i class="bi bi-arrow-counterclockwise"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <!-- PLAYING AGAINST -->
+          <div style="margin-bottom: 40px;">
+            Playing against <h5>Anshay</h5>
+          </div>
+
+          <!-- CHAT-->
+          <div style="height: 250px; width: 300px;">
+            <div disabled id="chatbox" class="scroller"></div>
+            <div class="input-group">
+              <input type="text" class="form-control" id="chat-input">
+              <div class="input-group-append">
+                <button class="btn btn-outline-dark" type="button" id="send">Send</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      
+
+      
+    </div>
+
+    <!-- JAVASCRIPT -->
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+      const firebaseConfig = {
+        apiKey: "AIzaSyBK3seswLAY4rpSQ8hoNt5Xtsy4YVpNXl0",
+        authDomain: "tictactoe-cc03f.firebaseapp.com",
+        projectId: "tictactoe-cc03f",
+        storageBucket: "tictactoe-cc03f.appspot.com",
+        messagingSenderId: "447871283016",
+        appId: "1:447871283016:web:0298add2d003b6f9be0d7d"
+      };
+      const app = initializeApp(firebaseConfig);
+    </script>
+
+    <script src="util.js"></script>
+    <script src="tictactoe.js"></script>
+
+  </body>
+</html>

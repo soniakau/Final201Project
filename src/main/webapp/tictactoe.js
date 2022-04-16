@@ -45,6 +45,11 @@ function setupUI() {
     const theme = THEMES.find(({ name }) => name === event.target.value);
     configureTheme(theme);
   });
+
+  // Hide theme select is user is not verified
+  if (gameInfo.verified === "false") {
+    document.getElementById("theme-select-box").style.visibility = "hidden";
+  }
 }
 
 // Called whenever the user selects a box
@@ -237,15 +242,14 @@ function setupGame() {
   gameInfo.game = params.get("game");
   gameInfo.verified = params.get("verified");
   gameInfo.isHost = params.get("isHost");
-
-  if (!gameInfo.game || !gameInfo.isHost) {
+  console.log(gameInfo);
+  if (!gameInfo.game || !gameInfo.isHost || !gameInfo.verified) {
     alert("Invalid URL setup.");
     return;
   }
 
   const { game, isHost } = gameInfo;
   player = isHost === "true" ? "1" : "2";
-  console.log("PLAYING AS: " + player);
 
   // Create a new game in firebase
   if (isHost === "true") {

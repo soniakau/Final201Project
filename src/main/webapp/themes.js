@@ -1,5 +1,7 @@
 const KENDRICK_MARKER = `<img src="assets/Kendrick.png" width=120 height=120/>`;
 const KEEM_MARKER = `<img src="assets/BabyKeem.png" width=120 height=120/>`;
+const YE_MARKER = `<img src="assets/Kanye.png" width=120 height=120/>`;
+const PETE_MARKER = `<img src="assets/Pete.png" width=120 height=120/>`;
 
 const THEMES = [
   {
@@ -65,7 +67,7 @@ const THEMES = [
   {
     name: "USC",
     backgroundColor: "#990000",
-    boardColor: "#000000",
+    boardColor: "#ffffff",
     buttonColor: "#ffc72c",
     buttonColorHover: "#e6b01e",
     textColor: "#ffc72c",
@@ -101,5 +103,15 @@ const THEMES = [
     textColor: "#E0C097",
     marker1: KENDRICK_MARKER,
     marker2: KEEM_MARKER,
+  },
+  {
+    name: "Skete",
+    backgroundColor: "#FDFEFF",
+    boardColor: "#D8D9DE",
+    buttonColor: "#F20505",
+    buttonColorHover: "#F20505",
+    textColor: "#F20505",
+    marker1: YE_MARKER,
+    marker2: PETE_MARKER,
   },
 ];

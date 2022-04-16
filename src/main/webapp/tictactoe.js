@@ -1,13 +1,3 @@
-let boardString = "000000000";
-
-String.prototype.replaceAt = function (index, replacement) {
-  return (
-    this.substring(0, index) +
-    replacement +
-    this.substring(index + replacement.length)
-  );
-};
-
 // INIT FIREBASE
 const firebaseConfig = {
   apiKey: "AIzaSyBK3seswLAY4rpSQ8hoNt5Xtsy4YVpNXl0",
@@ -20,12 +10,14 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
+// Data
 const gameInfo = {};
-
+let boardString = "000000000";
 let player = "";
 let currentTurn = "1";
 let gameStatus = "";
 let chatMessages = [];
+let currentTheme = {};
 
 // Setup button click handlers and UI element interactions
 function setupUI() {
@@ -99,21 +91,8 @@ function update(doc) {
   currentTurn = data.current;
   gameStatus = data.status;
   chatMessages = data.chatMessages;
-  // Update the board
-  for (let i = 0; i <= 2; i++) {
-    for (let j = 0; j <= 2; j++) {
-      let index = i * 3 + j;
-      let mark = boardString.charAt(index);
-      if (mark === "1") {
-        mark = '<span style="color: white">O</span>';
-      } else if (mark === "2") {
-        mark = '<span style="color: white">X</span>';
-      } else {
-        mark = "";
-      }
-      document.getElementById(`${i}${j}`).innerHTML = mark;
-    }
-  }
+
+  updateMarkers();
 
   // Update the chat
   let chatString = chatMessages
@@ -153,6 +132,25 @@ function update(doc) {
       setStatus("Waiting for opponent...");
     }
     document.getElementById("reset").className = "hidden";
+  }
+}
+
+// Update the game board markers
+function updateMarkers() {
+  // Update the board
+  for (let i = 0; i <= 2; i++) {
+    for (let j = 0; j <= 2; j++) {
+      let index = i * 3 + j;
+      let mark = boardString.charAt(index);
+      if (mark === "1") {
+        mark = currentTheme.marker1;
+      } else if (mark === "2") {
+        mark = currentTheme.marker2;
+      } else {
+        mark = "";
+      }
+      document.getElementById(`${i}${j}`).innerHTML = mark;
+    }
   }
 }
 
@@ -226,6 +224,35 @@ function setupGame() {
   }
 }
 
+// Reskin the game board with the given theme
+function configureTheme(theme) {
+  currentTheme = theme;
+  // Set page bg color
+  document.querySelector("body").style["background-color"] =
+    theme.backgroundColor;
+  document.querySelector("body").style.color = theme.textColor;
+  // Set board background color
+  document.querySelector("#game-board").style["background-color"] =
+    theme.boardColor;
+  // Button color configurations
+  document.querySelectorAll("#game-board > button").forEach((button) => {
+    button.style["background-color"] = theme.buttonColor;
+    button.addEventListener("mouseover", (event) => {
+      event.target.style["background-color"] = theme.buttonColorHover;
+    });
+    button.addEventListener("mouseout", (event) => {
+      event.target.style["background-color"] = theme.buttonColor;
+    });
+    button.addEventListener("mousedown", (event) => {
+      event.target.style["background-color"] = theme.buttonColor;
+    });
+  });
+
+  // Update current button markers
+  updateMarkers();
+}
+
 // EXECUTION
+configureTheme(THEMES[1]);
 setupGame();
 setupUI();

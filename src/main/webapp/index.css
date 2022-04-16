@@ -6,7 +6,7 @@
   display: grid;
   grid-template-columns: 150px 150px 150px;
   grid-gap: 8px;
-  background-color: #269455;
+  background-color: #942626;
   width: fit-content;
   padding: 8px;
   border-radius: 10px;
@@ -49,11 +49,17 @@
 
 #chatbox {
   border-width: 0px;
-  background-color: white;
+  background-color: transparent;
   height: 200px;
   margin-bottom: 5px;
   overflow-x: hidden;
   overflow-y: scroll;
+}
+
+#chat-input {
+  background-color: transparent;
+  border-width: 2px;
+  border-color: darkgray;
 }
 
 #status-container {
@@ -62,6 +68,8 @@
   padding: 10px;
   margin: auto;
   font-weight: bold;
+  border-radius: 8px;
+  color: #000000;
 }
 
 #reset {
@@ -78,10 +86,10 @@
   height: 12px;
 }
 .scroller::-webkit-scrollbar-track {
-  background: white;
+  background: transparent;
 }
 .scroller::-webkit-scrollbar-thumb {
-  background: #ddd;
+  background: rgba(0, 0, 0, 0.35);
   visibility:hidden;
 }
 .scroller:hover::-webkit-scrollbar-thumb {

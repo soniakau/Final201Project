@@ -35,6 +35,16 @@ function setupUI() {
         sendChatMessage();
       }
     });
+
+  // Update theme select
+  const themeSelect = document.getElementById("theme-select");
+  THEMES.forEach(({ name }) => {
+    themeSelect.innerHTML += `<option value="${name}">${name}</option>`;
+  });
+  themeSelect.addEventListener("change", (event) => {
+    const theme = THEMES.find(({ name }) => name === event.target.value);
+    configureTheme(theme);
+  });
 }
 
 // Called whenever the user selects a box
@@ -106,7 +116,7 @@ function update(doc) {
   chatbox.innerHTML = chatString;
   chatbox.scrollTop = chatbox.scrollHeight;
 
-  const setStatus = (html) => {
+  const setStatusText = (html) => {
     document.getElementById("statusbox").innerHTML = html;
   };
 
@@ -114,25 +124,61 @@ function update(doc) {
   if (gameStatus !== "playing") {
     // The game has ended
     if (data.status === "tie") {
-      setStatus('<span style="color: gray">Draw</span>');
+      setStatusText("Draw");
+      updateStatus("tie");
     } else {
       if (player === gameStatus) {
         // win
-        setStatus('<span style="color: blue">You win!</span>');
+        setStatusText("You win!");
+        updateStatus("win");
       } else {
         // loss
-        setStatus('<span style="color: red">You lost!</span>');
+        setStatusText("You lost!");
+        updateStatus("loss");
       }
     }
     document.getElementById("reset").className = "";
   } else {
     if (currentTurn === player) {
-      setStatus("Your turn");
+      setStatusText("Your turn");
     } else {
-      setStatus("Waiting for opponent...");
+      setStatusText("Waiting for opponent...");
     }
+    updateStatus("playing");
     document.getElementById("reset").className = "hidden";
   }
+}
+
+// Updates the status box to match the given status
+function updateStatus(status) {
+  let textColor = "";
+  let bgColor = "";
+  switch (status) {
+    case "playing":
+      textColor = "black";
+      bgColor = "white";
+      break;
+    case "win":
+      textColor = "white";
+      bgColor = "#2ecc71";
+      break;
+    case "tie":
+      textColor = "white";
+      bgColor = "black";
+      break;
+    case "loss":
+      textColor = "white";
+      bgColor = "#e74c3c";
+      break;
+    default:
+      break;
+  }
+
+  const container = document.getElementById("status-container");
+  const reset = document.getElementById("reset");
+  container.style.color = textColor;
+  container.style["background-color"] = bgColor;
+  reset.style.color = textColor;
 }
 
 // Update the game board markers
@@ -228,14 +274,26 @@ function setupGame() {
 function configureTheme(theme) {
   currentTheme = theme;
   // Set page bg color
-  document.querySelector("body").style["background-color"] =
-    theme.backgroundColor;
-  document.querySelector("body").style.color = theme.textColor;
+  const body = document.querySelector("body");
+  body.style["background-color"] = theme.backgroundColor;
+  body.style.color = theme.textColor;
   // Set board background color
   document.querySelector("#game-board").style["background-color"] =
     theme.boardColor;
+  // Set chat box colors
+  document.querySelector("#chat-input").style["border-bottom-color"] =
+    theme.textColor;
+  document.querySelector("#chat-input").style.color = theme.textColor;
+  document.querySelector("#send").style["border-bottom-color"] =
+    theme.textColor;
+  document.querySelector("#send").style.color = theme.textColor;
+  // Set theme selector colors
+  const themeSelect = document.querySelector("#theme-select");
+  themeSelect.style.color = theme.textColor;
+  themeSelect.style["border-bottom-color"] = theme.textColor;
   // Button color configurations
   document.querySelectorAll("#game-board > button").forEach((button) => {
+    console.log("applied");
     button.style["background-color"] = theme.buttonColor;
     button.addEventListener("mouseover", (event) => {
       event.target.style["background-color"] = theme.buttonColorHover;
@@ -253,6 +311,6 @@ function configureTheme(theme) {
 }
 
 // EXECUTION
-configureTheme(THEMES[1]);
+configureTheme(THEMES[0]);
 setupGame();
 setupUI();

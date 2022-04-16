@@ -27,6 +27,7 @@
   border-radius: 2px;
   font-size: 75px;
   background-color: #2ecc71;
+  color: white;
 }
 
 #markers {
@@ -50,7 +51,7 @@
 #chatbox {
   border-width: 0px;
   background-color: transparent;
-  height: 200px;
+  height: 250px;
   margin-bottom: 5px;
   overflow-x: hidden;
   overflow-y: scroll;
@@ -58,8 +59,22 @@
 
 #chat-input {
   background-color: transparent;
-  border-width: 2px;
-  border-color: darkgray;
+  border-width: 0px 0px 2px;
+  border-bottom-color: #000000;
+  padding-bottom: 5px;
+  width: 100%;
+}
+
+#chat-input {
+  outline: none;
+}
+
+#send {
+  background-color: transparent;
+  border: 2px solid black;
+  border-width: 0px 0px 2px;
+  border-color: green;
+  /* border-bottom-color: #000000; */
 }
 
 #status-container {
@@ -74,10 +89,10 @@
 
 #reset {
   position: absolute; 
-  right: 2px; 
-  top: 7px;
+  right: 3px; 
+  top: 8px;
   border-width: 0px;
-  font-size: 30px;
+  font-size: 25px;
   background-color: transparent;
 }
 
@@ -94,4 +109,21 @@
 }
 .scroller:hover::-webkit-scrollbar-thumb {
   visibility:visible;
+}
+
+#theme-select {
+  width: 300px;
+  background-color: transparent;
+  outline: none;
+  color: white;
+  appearance: none;
+  padding: 5px;
+  border-width: 0px 0px 2px;
+  border-bottom-color: #000000;
+}
+
+#dropdown-carat {
+  position: absolute;
+  right: 5px;
+  bottom: 8px;
 }

@@ -15,7 +15,7 @@
       <!-- Buttons -->
       <div class="row">
 
-        <div class="col-6">
+        <div class="col-7">
           <div id="game-board" class="shadow-lg mb-5 rounded">
             <button id="00"></button>
             <button id="01"></button>
@@ -38,22 +38,34 @@
           </div>
         </div>
 
-        <div class="col-6">
+        <div class="col-5">
           <!-- PLAYING AGAINST -->
           <div style="margin-bottom: 40px;">
-            Playing against <h5>Anshay</h5>
+            <span style="font-size: 12px">PLAYING AGAINST</span> <h5>Anshay</h5>
           </div>
 
           <!-- CHAT-->
-          <div style="height: 250px; width: 300px;">
-            <div disabled id="chatbox" class="scroller"></div>
-            <div class="input-group">
-              <input type="text" class="form-control shadow-none" id="chat-input">
-              <div class="input-group-append">
-                <button class="btn btn-outline-dark" type="button" id="send">Send</button>
-              </div>
+          <div style="height: 320px; width: 300px;">
+            <div disabled id="chatbox" class="scroller mb-2"></div>
+            <span style="font-size: 12px">CHAT</span>
+            <div class="d-flex flex-row" style="margin-top: 2px">
+              <input type="text" class="shadow-none" id="chat-input" placeholder="">
+              <button type="button" id="send"><i class="bi bi-caret-right-fill"></i></button>
             </div>
           </div>
+
+          <!-- THEME SELECT -->
+          <div class="mt-3 d-flex" style="flex-direction: column; width: 300px; position: relative">
+            <span style="font-size: 12px">THEME</span>
+            <select id="theme-select">
+              <!-- <option selected>Classic</option> -->
+            </select>
+            <div id="dropdown-carat">
+              <i class="bi bi-caret-down-fill"></i>
+            </div>
+          </div>
+          
+
         </div>
 
       </div>
@@ -63,20 +75,6 @@
     </div>
 
     <!-- JAVASCRIPT -->
-
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-      const firebaseConfig = {
-        apiKey: "AIzaSyBK3seswLAY4rpSQ8hoNt5Xtsy4YVpNXl0",
-        authDomain: "tictactoe-cc03f.firebaseapp.com",
-        projectId: "tictactoe-cc03f",
-        storageBucket: "tictactoe-cc03f.appspot.com",
-        messagingSenderId: "447871283016",
-        appId: "1:447871283016:web:0298add2d003b6f9be0d7d"
-      };
-      const app = initializeApp(firebaseConfig);
-    </script>
-
     <script src="themes.js"></script>
     <script src="util.js"></script>
     <script src="tictactoe.js"></script>

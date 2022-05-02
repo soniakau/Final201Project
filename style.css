@@ -1,0 +1,93 @@
+a {
+    text-decoration: none;
+    color: gray;
+
+
+}
+header {
+    margin-top: 30px;
+}
+#logo {
+	font-size: 20px;
+    margin-left: 2%;
+    font-family: "Odibee Sans", monospace;
+    letter-spacing: 0.1em;
+    color: #fff;
+    margin-right: 25px;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9e0079, 0 0 20px #9e0079, 0 0 25px #9e0079, 0 0 30px #9e0079, 0 0 35px #9e0079;
+}
+
+#homeButton  {
+	font-size: 20px;
+	letter-spacing: 0.1em;
+	font-family: 'Odibee Sans', monospace;
+    float: right;
+    color: #fff;
+    margin-right: 25px;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
+}
+#registerButton  {
+	font-size: 20px;
+	letter-spacing: 0.1em;
+	font-family: 'Odibee Sans', monospace;
+    float: right;
+    margin-right: 2%;
+    color: #fff;
+    margin-right: 25px;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
+}
+    
+
+#loginButton  {
+	font-size: 20px;
+	letter-spacing: 0.1em;
+    float: right;
+    font-family: 'Odibee Sans', monospace;
+    margin-right: 2%;
+    color: #fff;
+    margin-right: 25px;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
+}
+
+
+#banner {
+    width: 96%;
+    height: 100%;
+    margin-left: 2%;
+    border-radius: 8px;
+    margin-top: 50px;
+    box-shadow: 0px 0px 30px 20px #9e0079;
+}
+#forms {
+    font-family: Arial, Helvetica, sans-serif;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-areas: "login signup";
+}
+#gameFormContent{
+    margin-left: 10%;
+    width: 10%;
+    display: grid;
+    grid-area: login;
+}
+#createGame {
+	margin-top: 50px;
+	font-size: 25px;
+	font-family: 'Odibee Sans', monospace;
+    border: none;
+    background: #9e0079;
+    color: white;
+    width: 150px;
+    height: 70px;
+}
+
+#joinGame{
+	font-size: 25px;
+	font-family: 'Odibee Sans', monospace;
+	margin-top: 50px;
+    border: none;
+    color: white;
+    background: #0073e6;
+    width: 150px;
+    height: 70px;
+}

@@ -1,0 +1,101 @@
+@charset "UTF-8";
+body{
+	background-color: #ffffff;
+	font-size: 20px;
+}
+
+h1 {
+	font-size: 60px;
+}
+
+
+.card {
+	width: 750px;
+	border: 3px solid #27ae60;
+    justify-content: center;
+}
+
+.btr {
+    border-top-right-radius: 5px !important
+}
+
+.btl {
+    border-top-left-radius: 5px !important
+}
+
+.btn-dark {
+	color: #ffffff;
+	background-color: #2ecc71;
+	width: 100%;
+	border-color: #ffffff;
+	border-width: 2px;
+	font-size: 20px;
+}
+
+.btn-dark:hover {
+	color: #ffffff;
+	background-color: #27ae60;
+	width: 100%;
+	border-color: #ffffff;
+	border-width: 2px;
+	font-size: 20px;
+}
+
+.form-control {
+	font-size: 18px;
+	/*border-color: #27ae60;
+	border-width: 3px;*/
+}
+
+.nav-tabs {
+	color: #ffffff;
+	display: table !important;
+    width: 100%;
+}
+
+.nav-tabs .nav-link {
+	color: #ffffff;
+	border-radius: 0px;
+    border: 3px solid white
+}
+
+.nav-item {
+	color: #ffffff;
+	display: table-cell;
+    background: #2ecc71;
+}
+
+.nav-item.active {
+	color: #ffffff;
+	display: table-cell;
+    background: #27ae60;
+}
+
+.navbar {
+	background: #ffffff;
+	color: #000000
+}
+
+
+.tab-pane {
+	background: #ffffff;
+	color: #ffffff
+}
+
+.form {
+    padding: 10px;
+    height: 300px
+}
+
+.form input {
+    margin-bottom: 12px;
+    border-radius: 3px
+}
+
+.form input:focus {
+    box-shadow: none
+}
+
+.form button {
+    margin-top: 20px
+}

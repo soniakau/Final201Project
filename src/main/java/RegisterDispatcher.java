@@ -34,8 +34,7 @@ public class RegisterDispatcher extends HttpServlet {
 
 		String error = ""; 
     	
-    	String name = (String) request.getParameter("name"); 
-    	String email = (String) request.getParameter("email");
+    	String username = (String) request.getParameter("username");
     	String password = (String) request.getParameter("password");
     	String cpassword = (String) request.getParameter("confpassword");
     	
@@ -47,15 +46,8 @@ public class RegisterDispatcher extends HttpServlet {
     		return;
     	}
     	
-    	if (! Helper.validName(name)) {
-    		error = "Name is invalid. Use only characters and spaces.";
-    		request.setAttribute("error", error);
-    		request.getRequestDispatcher("auth.jsp").include(request, response);
-    		return;
-    	}
-    	
-    	if (! Helper.isValidEmail(email)) {
-    		error = "Email is invalid.";
+    	if (! Helper.validName(username)) {
+    		error = "Username is invalid. Use only letters and numbers.";
     		request.setAttribute("error", error);
     		request.getRequestDispatcher("auth.jsp").include(request, response);
     		return;
@@ -68,7 +60,7 @@ public class RegisterDispatcher extends HttpServlet {
 			e.printStackTrace();
 		}
     	
-    	String insert_sql = "INSERT INTO USERS (name, email, password) VALUES (?, ?, ?);";
+    	String insert_sql = "INSERT INTO USERS (username, password) VALUES (?, ?);";
     	
     	try(
     		Connection connection = DriverManager.getConnection(Constant.url, Constant.DBUserName, Constant.DBPassword);
@@ -76,17 +68,16 @@ public class RegisterDispatcher extends HttpServlet {
     		PreparedStatement ps = connection.prepareStatement(insert_sql);
     	) {
     		// adding new user to the database
-    		ps.setString(1, name); 
-    		ps.setString(2, email); 
-    		ps.setString(3, password);
+    		ps.setString(1, username); 
+    		ps.setString(2, password);
     		ps.executeUpdate();
     		// logging them in 
-    		request.getRequestDispatcher("LoginDispatcher?login_email=" + email + "&login_password=" + password).forward(request, response);
+    		request.getRequestDispatcher("LoginDispatcher?login_username=" + username + "&login_password=" + password).forward(request, response);
     	} catch (SQLException e) {
     		// process the SQL exception 
     		if(e.getMessage().contains("Duplicate entry")) {
     			// the email entered already exists in the database
-    			error = "Existing email! Please sign in.";
+    			error = "Existing username! Please sign in or create a unique username.";
     			request.setAttribute("error", error); 
     			request.getRequestDispatcher("auth.jsp").include(request, response);
     			return; 

@@ -47,7 +47,7 @@
 	            <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
 	                <div class="form px-4 pt-5"> 
 	                	<form action="LoginDispatcher" method="GET">
-			            	<input type="email" name="login_email" class="form-control" placeholder="Email"> 
+			            	<input type="text" name="login_username" class="form-control" placeholder="Username"> 
 				            <input type="password" name="login_password" class="form-control" placeholder="Password"> 
 				            <button type="submit" class="btn btn-dark btn-block">Login</button>
 				        </form>
@@ -56,8 +56,7 @@
 	            <div class="tab-pane fade show" id="signup" role="tabpanel" aria-labelledby="signup-tab">
 	                <div class="form px-4">
 	                	<form action="RegisterDispatcher" method="GET">
-			                <input type="text" name="name" class="form-control" placeholder="Name"> 
-			                <input type="email" name="email" class="form-control" placeholder="Email"> 
+			                <input type="text" name="username" class="form-control" placeholder="Username">
 			                <input type="password" name="password" class="form-control" placeholder="Password"> 
 			                <input type="password" name="confpassword" class="form-control" placeholder="Confirm Password"> 
 			                <button type="submit" class="btn btn-dark btn-block">Sign Up</button> 

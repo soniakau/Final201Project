@@ -9,9 +9,4 @@ public class Constant {
     public static String url = "jdbc:mysql://localhost:3306/tictactoe";
 
     static public Pattern namePattern = Pattern.compile("^[ A-Za-z]+$");
-    static public Pattern emailPattern = Pattern.compile("^[a-zA-Z0-9_+&*-]+(?:\\."
-            + "[a-zA-Z0-9_+&*-]+)*@"
-            + "(?:[a-zA-Z0-9-]+\\.)+[a-z"
-            + "A-Z]{2,7}$");
-
 }

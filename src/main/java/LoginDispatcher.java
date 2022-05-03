@@ -40,7 +40,7 @@ public class LoginDispatcher extends HttpServlet {
     	 * if logged in -> send to ________
     	 * if not -> send error and send to auth.jsp
     	 */
-    	String email = request.getParameter("login_email");
+    	String username = request.getParameter("login_username");
     	String password = request.getParameter("login_password");
     	
     	try {
@@ -49,12 +49,12 @@ public class LoginDispatcher extends HttpServlet {
     		ex.printStackTrace();
     	}
     	
-    	String find_sql = "SELECT * FROM Users WHERE email=?"; 
+    	String find_sql = "SELECT * FROM Users WHERE username=?"; 
     	try (
     			Connection connection = DriverManager.getConnection(Constant.url, Constant.DBUserName, Constant.DBPassword);
     			PreparedStatement ps = connection.prepareStatement(find_sql);
     		) {
-        	ps.setString(1, email);
+        	ps.setString(1, username);
         	ResultSet rs = ps.executeQuery();
         	
         	// checking if the email is in the database
@@ -72,8 +72,8 @@ public class LoginDispatcher extends HttpServlet {
             		request.setAttribute("error", error);
             		request.getRequestDispatcher("auth.jsp").include(request, response);
         		}
-        	} else { // email is not in the database
-        		error = "Email does not exist! Please register first.";
+        	} else { // username is not in the database
+        		error = "Username does not exist! Please register first.";
         		request.setAttribute("error", error);
         		request.getRequestDispatcher("auth.jsp").include(request, response);
         	}

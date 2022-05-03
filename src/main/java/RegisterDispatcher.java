@@ -1,3 +1,10 @@
+// servlet class to handle user registration
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -5,90 +12,96 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Util.Constant;
-
-import java.io.IOException;
-import java.io.Serial;
-import java.sql.*;
+import Util.Helper;
 
 /**
  * Servlet implementation class RegisterDispatcher
  */
-
-@WebServlet("/Register")
+@WebServlet("/RegisterDispatcher")
 public class RegisterDispatcher extends HttpServlet {
-    @Serial
-    private static final long serialVersionUID = 1L;
-    private static final String url = "jdbc:mysql://localhost:3306/PA4Users";
-
+	private static final long serialVersionUID = 1L;
+       
     /**
-     * Default constructor.
+     * Default constructor
      */
     public RegisterDispatcher() {
-    	
     }
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-     * response)
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        //TODO
-    	String name = request.getParameter("name");
-    	String email = request.getParameter("email");
-    	String password = request.getParameter("password");
-    	String confPassword = request.getParameter("conf-password");
+		String error = ""; 
     	
-    	if (!password.equals(confPassword)) {
-    		request.setAttribute("error", "Passwords do not match.");
+    	String name = (String) request.getParameter("name"); 
+    	String email = (String) request.getParameter("email");
+    	String password = (String) request.getParameter("password");
+    	String cpassword = (String) request.getParameter("confpassword");
+    	
+    	// checking is passwords match in the two fields
+    	if (! password.equals(cpassword)) {
+    		error = "Passwords do not match!"; 
+    		request.setAttribute("error", error);
     		request.getRequestDispatcher("auth.jsp").include(request, response);
     		return;
     	}
     	
+    	if (! Helper.validName(name)) {
+    		error = "Name is invalid. Use only characters and spaces.";
+    		request.setAttribute("error", error);
+    		request.getRequestDispatcher("auth.jsp").include(request, response);
+    		return;
+    	}
+    	
+    	if (! Helper.isValidEmail(email)) {
+    		error = "Email is invalid.";
+    		request.setAttribute("error", error);
+    		request.getRequestDispatcher("auth.jsp").include(request, response);
+    		return;
+    	}
+    	
+    	// Initializing JDBC driver
     	try {
-    		Class.forName("com.mysql.cj.jdbc.Driver");
-    	} catch (Exception ex) {
-    		ex.printStackTrace();
-    	}
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
     	
+    	String insert_sql = "INSERT INTO USERS (name, email, password) VALUES (?, ?, ?);";
     	
-    	String sql = "INSERT INTO Users VALUES (?, ?, ?);";
-    	try (
-    			Connection conn = DriverManager.getConnection(Constant.DBAddress, Constant.DBUserName, Constant.DBPassword);
-    			PreparedStatement st = conn.prepareStatement(sql);
-    		) {
-    		st.setString(1, name);
-    		st.setString(2, email);
-    		st.setString(3, password);
-    		st.executeUpdate();
-    		
-    		request.getRequestDispatcher("Login?email=" + email + "&password=" + password).forward(request, response);
-    	} catch (SQLException ex) {
-    		if (ex.getErrorCode() == 1062) {
-    			// Email already exists.
-    			request.setAttribute("error", "An account with this email already exists. Please log in.");
-        		request.getRequestDispatcher("auth.jsp").include(request, response);
-        		return;
+    	try(
+    		Connection connection = DriverManager.getConnection(Constant.url, Constant.DBUserName, Constant.DBPassword);
+    		// use the connection object to build a statement
+    		PreparedStatement ps = connection.prepareStatement(insert_sql);
+    	) {
+    		// adding new user to the database
+    		ps.setString(1, name); 
+    		ps.setString(2, email); 
+    		ps.setString(3, password);
+    		ps.executeUpdate();
+    		// logging them in 
+    		request.getRequestDispatcher("LoginDispatcher?login_email=" + email + "&login_password=" + password).forward(request, response);
+    	} catch (SQLException e) {
+    		// process the SQL exception 
+    		if(e.getMessage().contains("Duplicate entry")) {
+    			// the email entered already exists in the database
+    			error = "Existing email! Please sign in.";
+    			request.setAttribute("error", error); 
+    			request.getRequestDispatcher("auth.jsp").include(request, response);
+    			return; 
     		}
-    		System.out.println(ex.getMessage());
-    		System.out.println(ex.getErrorCode());
+    		// FOR TESTING
+    		e.printStackTrace(); 
     	}
-    	
-    	// USER REGISTRATION SUCCESSFUL
-    	
-    }
+	}
 
-    /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-     * response)
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        // TODO Auto-generated method stub
-        doGet(request, response);
-    }
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
 
 }

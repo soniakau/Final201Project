@@ -1,7 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="Util.*" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -10,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Odibee Sans&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/6e009e6cd4.js" crossorigin="anonymous"></script>
     <style>
     
@@ -49,7 +53,8 @@
 	    color: #fff;
 	    margin-right: 25px;
 	    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
-}
+		text-decoration: none;
+	}
     
     .t {
     	background-color: red;
@@ -61,21 +66,26 @@
     	
     }
     </style>
-    
-    
-    
 </head>
 <body style = "background-color: #111111">
-    <header style = "width: 100%;border-bottom: 1px solid grey; height: 50px;">
-        <a href=  "home.jsp" id = "logo">tXc-tOc-t#e</a>
-      
+    <div class="d-flex justify-content-between flex-row bd-highlight mb-3" style = "width: 100%;border-bottom: 1px solid grey; height: 50px;">
+        <a class="align-self-center" href=  "home.jsp" id = "logo">tXc-tOc-t#e</a>
         
+        <% if (Helper.isLoggedIn(request)) { %>
+        	<div class="align-self-center" id=hi>Hi <%= Helper.getName(request) %>!</div>
+        <% } %>
         
-        <a href=  "auth.jsp" id = "loginButton">Login   <i class="fa-solid fa-circle-user"></i></a>
-        <a href=  "home.jsp" id = "homeButton">Home</a>
-        <a class=logoutButton href=  "LogoutDispatcher">Logout</a>
-        <a href=  "auth.jsp" id = "registerButton">Register</a>
-    </header>
+        <div class="align-self-center">
+	        <% if (Helper.isLoggedIn(request)) { %>
+	        	
+				<a class=logoutButton href=  "LogoutDispatcher">Logout</a>
+			<% } else { %> 
+				<a href=  "auth.jsp" id = "loginButton">Login/Register   <i class="fa-solid fa-circle-user"></i></a>
+				<!-- <a href=  "auth.jsp" id = "registerButton">Register</a> -->
+			<% } %>
+	        <a href=  "home.jsp" id = "homeButton">Home</a>
+        </div>
+    </div>
     <img src = "bannerhome.jpeg" id = "banner"></img>
     <div id=forms>
     	<div id=gameFormContent>
@@ -83,9 +93,5 @@
     		<a class= joinGame href="join.jsp">Join Game</a>
     	</div>
     </div>
-    
-    
-   
-    
 </body>
 </html>

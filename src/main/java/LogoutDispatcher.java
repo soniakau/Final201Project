@@ -3,16 +3,14 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import Util.Help;
-
 import java.io.IOException;
 import java.io.Serial;
 
 /**
  * Servlet implementation class LogoutDispatcher
  */
-@WebServlet("/Logout")
+
+@WebServlet("/LogoutDispatcher")
 public class LogoutDispatcher extends HttpServlet {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -24,14 +22,28 @@ public class LogoutDispatcher extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
-    	// Delete cookie
-    	for (Cookie cookie: request.getCookies()) {
-    		if (cookie.getName().equals("auth") || cookie.getName().equals("name") || cookie.getName().equals("G_AUTHUSER_H")) {
-    			cookie.setMaxAge(0);
-    			response.addCookie(cookie);
+        // Remove username cookie by expiring it and adding it to response
+    	Cookie [] cookies = request.getCookies(); 
+    	for (Cookie cookie: cookies) {
+    		if (cookie.getName().equals("username")) {
+    			cookie.setMaxAge(0); // expire the cookie
+    			response.addCookie(cookie); 
+    		}
+    		if (cookie.getName().equals("wins")) {
+    			cookie.setMaxAge(0); // expire the cookie
+    			response.addCookie(cookie); 
+    		}
+    		if (cookie.getName().equals("losses")) {
+    			cookie.setMaxAge(0); // expire the cookie
+    			response.addCookie(cookie); 
+    		}
+    		if (cookie.getName().equals("draws")) {
+    			cookie.setMaxAge(0); // expire the cookie
+    			response.addCookie(cookie); 
     		}
     	}
     	
+    	// return to login page once user is logged out
     	try {
     		request.getRequestDispatcher("auth.jsp").include(request, response);
     	} catch (Exception e) {

@@ -15,6 +15,17 @@ header {
     color: #fff;
     margin-right: 25px;
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9e0079, 0 0 20px #9e0079, 0 0 25px #9e0079, 0 0 30px #9e0079, 0 0 35px #9e0079;
+    text-decoration: none;
+}
+
+#hi {
+	font-size: 20px;
+    text-align:center;
+    font-family: "Odibee Sans", monospace;
+    letter-spacing: 0.1em;
+    color: #fff;
+    margin-right: 25px;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #9e0079, 0 0 20px #9e0079, 0 0 25px #9e0079, 0 0 30px #9e0079, 0 0 35px #9e0079;
 }
 
 #homeButton  {
@@ -25,27 +36,7 @@ header {
     color: #fff;
     margin-right: 25px;
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
-}
-#registerButton  {
-	font-size: 20px;
-	letter-spacing: 0.1em;
-	font-family: 'Odibee Sans', monospace;
-    float: right;
-    margin-right: 2%;
-    color: #fff;
-    margin-right: 25px;
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
-}
-
-#logoutButton  {
-	font-size: 20px;
-	letter-spacing: 0.1em;
-    float: right;
-    font-family: 'Odibee Sans', monospace;
-    margin-right: 2%;
-    color: #fff;
-    margin-right: 25px;
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
+    text-decoration: none;
 }
 
 
@@ -58,6 +49,7 @@ header {
     color: #fff;
     margin-right: 25px;
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #0073e6, 0 0 20px #0073e6, 0 0 25px #0073e6, 0 0 30px #0073e6, 0 0 35px #0073e6;
+	text-decoration: none;
 }
 
 

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 //import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,7 @@ import Util.Constant;
 @WebServlet("/LoginDispatcher")
 public class LoginDispatcher extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static String landingPage = "index.jsp";  // replace with correct logged in landing page
+	private static String landingPage = "home.jsp";  // replace with correct logged in landing page
        
     /**
      * Default Constructor
@@ -60,12 +61,12 @@ public class LoginDispatcher extends HttpServlet {
         	// checking if the email is in the database
         	if (rs.next()) {
         		// checking if the input password matches the database password
-        		String login_password = rs.getString("password"); 
+        		String login_password = rs.getString("userpass"); 
         		if (login_password.equals(password)) {
         			// user is logged in 
         			// add cookies for name display
-//        			Cookie username = new Cookie("name", rs.getString("name").replace(' ', '+'));
-//        			response.addCookie(username);
+        			Cookie usernameCookie = new Cookie("username", username);
+        			response.addCookie(usernameCookie);
         			response.sendRedirect(landingPage);
         		} else { // password is wrong
             		error = "Password is incorrect! Try again.";

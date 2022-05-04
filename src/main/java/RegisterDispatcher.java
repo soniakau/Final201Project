@@ -60,7 +60,7 @@ public class RegisterDispatcher extends HttpServlet {
 			e.printStackTrace();
 		}
     	
-    	String insert_sql = "INSERT INTO USERS (username, password) VALUES (?, ?);";
+    	String insert_sql = "INSERT INTO USERS (username, userpass, wins, losses, draws) VALUES (?, ?, ?, ?, ?);";
     	
     	try(
     		Connection connection = DriverManager.getConnection(Constant.url, Constant.DBUserName, Constant.DBPassword);
@@ -70,6 +70,9 @@ public class RegisterDispatcher extends HttpServlet {
     		// adding new user to the database
     		ps.setString(1, username); 
     		ps.setString(2, password);
+    		ps.setInt(3, 0);
+    		ps.setInt(4, 0);
+    		ps.setInt(5, 0);
     		ps.executeUpdate();
     		// logging them in 
     		request.getRequestDispatcher("LoginDispatcher?login_username=" + username + "&login_password=" + password).forward(request, response);

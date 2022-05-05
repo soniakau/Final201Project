@@ -37,10 +37,11 @@ public class StatDispatcher extends HttpServlet{
     	String connect = Constant.url;
     	username = request.getParameter("username");
     	String sql = "SELECT * FROM Users WHERE ? = Users.username";
-    	
-    	try
-    	{
-    		Connection c = DriverManager.getConnection(connect, Constant.DBUserName, Constant.DBPassword);
+    	if (!username.equals(""))
+	{
+    		try
+    		{
+    			Connection c = DriverManager.getConnection(connect, Constant.DBUserName, Constant.DBPassword);
 			PreparedStatement task = c.prepareStatement(sql);
 			task.setString(1, username);
 			ResultSet result = task.executeQuery();
@@ -51,13 +52,13 @@ public class StatDispatcher extends HttpServlet{
 			response.addCookie(winsCookie);
 			response.addCookie(drawsCookie);
 			response.addCookie(lossesCookie);
-			response.sendRedirect("home.jsp");
-    	}
-    	catch (SQLException e)
-    	{
-    		e.printStackTrace();
-    	}
-    	
+    		}
+    		catch (SQLException e)
+    		{
+    			e.printStackTrace();
+    		}
+	}
+    	response.sendRedirect("home.jsp");
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

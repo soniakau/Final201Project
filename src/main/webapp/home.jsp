@@ -71,9 +71,8 @@
     <div class="d-flex justify-content-between flex-row bd-highlight mb-3" style = "width: 100%;border-bottom: 1px solid grey; height: 50px;">
         <a class="align-self-center" href=  "home.jsp" id = "logo">tXc-tOc-t#e</a>
         
-        <% if (Helper.isLoggedIn(request) == "loggedin" || Helper.isLoggedIn(request) == "guest") { %>
-        	<div class="align-self-center" id=hi>Hi <%= Helper.getName(request) %>!</div>
-        <% } %>
+        <div class="align-self-center" id=hi>Hi <%= Helper.getName(request) %>!</div>
+       
         
         <div class="align-self-center">
 	        <% if (Helper.isLoggedIn(request) == "loggedin") { %>
@@ -81,17 +80,22 @@
 				<a class=logoutButton href=  "LogoutDispatcher">Logout</a>
 			<% } else { %> 
 				<a href=  "auth.jsp" id = "loginButton">Login/Register   <i class="fa-solid fa-circle-user"></i></a>
-				<!-- <a href=  "auth.jsp" id = "registerButton">Register</a> -->
 			<% } %>
 	        <a href=  "home.jsp" id = "homeButton">Home</a>
         </div>
     </div>
     <img src = "bannerhome.jpeg" id = "banner"></img>
-    <div id=forms>
-    	<div id=gameFormContent>
-    		<a class= createGame href="create.jsp">Create Game</a>
-    		<a class= joinGame href="join.jsp">Join Game</a>
-    	</div>
-    </div>
+    <br> <br> <br>
+    <div class="d-flex flex-row justify-content-start">
+		<div class="d-flex flex-column">
+			<div class="p-3">
+				<a class="createGame" href="create.jsp">Create Game</a>
+			</div>
+			<div class="p-3">
+				<a class= "joinGame" href="join.jsp">Join Game</a>
+			</div>
+		</div>
+	</div>
+    
 </body>
 </html>

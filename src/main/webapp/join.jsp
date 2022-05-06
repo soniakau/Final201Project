@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Join</title>
 
     <script src="https://kit.fontawesome.com/3204349982.js"
             crossorigin="anonymous"></script>
@@ -38,9 +38,9 @@ saleats{
 <saleats> <a href="http://localhost:8080/abubna_CSCI201_Assignment2/index.jsp" style="color: #b0331f;"> #  </a> </saleats>
         
         <span class="tr-links" style = "margin-left: 1100px; text-align:right; font-size: 20px; color: gray; font-family: Schoolbell; ">
-        	<span><a href="http://localhost:8080/abubna_CSCI201_Assignment2/index.jsp">HOME</a>&nbsp&nbsp&nbsp&nbsp&nbsp
-        	<a href="http://localhost:8080/abubna_CSCI201_Assignment2/auth.jsp">LOGIN</a>&nbsp&nbsp
-        	<a href="http://localhost:8080/abubna_CSCI201_Assignment2/auth.jsp">REGISTER</a>
+        	<span><a href="">HOME</a>
+        	<a href="">LOGIN</a>
+        	<a href="">REGISTER</a>
         	</span>
         </span> 	
         	
@@ -54,9 +54,11 @@ saleats{
         <br>
 	    <div class = "topnav">
 	    	<div class = "search-container">
-		    	 <form>
+		    	 <form method="GET" action="Join">
 		        	<input style="margin-left: 45%; text-align: center;" type = "text" placeholder = "ex. 42651" name="gameCode">
+		        	<button type="submit">Join</button>
 		        </form>
+		        
 	    	</div>  
 	    </div>
 	    

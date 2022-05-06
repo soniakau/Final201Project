@@ -26,27 +26,30 @@ public class Helper {
      * @param request
      * @return logged in or not logged in
      */
-    public static boolean isLoggedIn(HttpServletRequest request) {
+    public static String isLoggedIn(HttpServletRequest request) {
         Cookie [] cookies = request.getCookies(); 
         for (Cookie cookie : cookies) {
-        	if (cookie.getName().equals("name") && !cookie.getValue().isBlank()) {
-        		return true; 
+        	if (cookie.getName().equals("username") && cookie.getValue().equals("guest")) {
+        		return "guest"; 
+        	}
+        	if (cookie.getName().equals("username") && !cookie.getValue().isBlank()) {
+        		return "loggedin"; 
         	}
         }
-        return false;  
+        return "notloggedin";  
     }
     
     /**
      * get name of logged in user
      *
      * @param request
-     * @return logged in or not logged in
+     * @return the name of the logged in user
      */
     public static String getName(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies(); 
         for (Cookie cookie: cookies) {
-        	if (cookie.getName().equals("name")) {
-        		return cookie.getValue().replace('+', ' ');
+        	if (cookie.getName().equals("username")) {
+        		return cookie.getValue();
         	}
         }
         return ""; 

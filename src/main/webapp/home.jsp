@@ -71,12 +71,12 @@
     <div class="d-flex justify-content-between flex-row bd-highlight mb-3" style = "width: 100%;border-bottom: 1px solid grey; height: 50px;">
         <a class="align-self-center" href=  "home.jsp" id = "logo">tXc-tOc-t#e</a>
         
-        <% if (Helper.isLoggedIn(request)) { %>
+        <% if (Helper.isLoggedIn(request) == "loggedin" || Helper.isLoggedIn(request) == "guest") { %>
         	<div class="align-self-center" id=hi>Hi <%= Helper.getName(request) %>!</div>
         <% } %>
         
         <div class="align-self-center">
-	        <% if (Helper.isLoggedIn(request)) { %>
+	        <% if (Helper.isLoggedIn(request) == "loggedin") { %>
 	        	
 				<a class=logoutButton href=  "LogoutDispatcher">Logout</a>
 			<% } else { %> 

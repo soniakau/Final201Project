@@ -46,6 +46,9 @@ public class Helper {
      * @return the name of the logged in user
      */
     public static String getName(HttpServletRequest request) {
+    	if (isLoggedIn(request).equals("notloggedin")) {
+    		return "guest"; 
+    	}
         Cookie[] cookies = request.getCookies(); 
         for (Cookie cookie: cookies) {
         	if (cookie.getName().equals("username")) {

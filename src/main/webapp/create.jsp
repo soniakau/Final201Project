@@ -1,10 +1,12 @@
+import GameData.java;
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Create</title>
 
     <script src="https://kit.fontawesome.com/3204349982.js"
             crossorigin="anonymous"></script>
@@ -58,8 +60,7 @@ saleats{
 	    
 	    <p style="margin-left: 47%; font-size: 26px;" id = "code"></p>
 	    <script>
-	   
-	    	document.getElementById("code").innerHTML = Math.floor(Math.random()* 100000);
+	    	GameData.gameID = document.getElementById("code").innerHTML = Math.floor(Math.random()* 100000);
 	    </script>
 	       
 </body>

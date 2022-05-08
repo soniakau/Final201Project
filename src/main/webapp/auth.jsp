@@ -51,6 +51,7 @@
 				            <input type="password" name="login_password" class="form-control" placeholder="Password"> 
 				            <button type="submit" class="btn btn-dark btn-block">Login</button>
 				        </form>
+				        <a href="GuestDispatcher" class="btn btn-dark btn-block">Continue as Guest</a>
 	                </div>
 	            </div>
 	            <div class="tab-pane fade show" id="signup" role="tabpanel" aria-labelledby="signup-tab">
@@ -61,6 +62,7 @@
 			                <input type="password" name="confpassword" class="form-control" placeholder="Confirm Password"> 
 			                <button type="submit" class="btn btn-dark btn-block">Sign Up</button> 
 		                </form>
+				        <a href="GuestDispatcher" class="btn btn-dark btn-block">Continue as Guest</a>
 	                </div>
 	            </div>
 	        </div>
